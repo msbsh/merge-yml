@@ -12,10 +12,6 @@ import java.util.Map;
 
 import static org.junit.Assert.*;
 
-/**
- * (c) Copyright 2013 Jonathan Cobb
- * This code is available under the Apache License, version 2: http://www.apache.org/licenses/LICENSE-2.0.html
- */
 public class YmlMergerTest {
 
     private static final Logger LOG = LoggerFactory.getLogger(YmlMergerTest.class);
@@ -31,7 +27,7 @@ public class YmlMergerTest {
     private final Yaml yaml = new Yaml();
     private final YmlMerger merger = new YmlMerger();
 
-    @SuppressWarnings({ "deprecation", "unchecked" })
+    @SuppressWarnings({ "unchecked" })
 	@Test
     public void testMerge2Files () throws Exception {
         final Map<String, Object> merged = merger.merge(new String[]{YML_1, YML_2});
@@ -50,7 +46,7 @@ public class YmlMergerTest {
         assertEquals("wrong db url", dbProperties.get("hibernate.dialect"), "org.hibernate.dialect.MySQL5InnoDBDialect");
     }
 
-    @SuppressWarnings({ "deprecation", "unchecked" })
+    @SuppressWarnings({ "unchecked" })
 	@Test
     public void testMergeFileIntoSelf () throws Exception {
         final Map<String, Object> merged = merger.merge(new String[]{YML_1, YML_1});
@@ -59,15 +55,14 @@ public class YmlMergerTest {
         assertEquals("wrong db url", dbconfig.get("url"), "jdbc:mysql://localhost:3306/some-db");
     }
 
-    @SuppressWarnings("deprecation")
-	@Test
+    @Test
     public void testNullValue () throws Exception {
         final Map<String, Object> merged = merger.merge(new String[]{YML_NULL});
         assertNotNull(merged.get("prop1"));
         assertNull(merged.get("prop2"));
     }
 
-    @SuppressWarnings({ "deprecation", "unchecked" })
+    @SuppressWarnings({ "unchecked" })
 	@Test
     public void testSubstitutionValueWithColon () throws Exception {
         final Map<String, Object> merged = new YmlMerger(Collections.singletonMap("ENV_VAR", "localhost")).merge(new String[]{YML_COLON});
@@ -77,7 +72,7 @@ public class YmlMergerTest {
         assertEquals(hash.get("some_other_key"), "value2");
     }
     
-    @SuppressWarnings({ "unchecked", "deprecation"})
+    @SuppressWarnings({ "unchecked"})
 	@Test
     public void testMerge2Lists () throws Exception {
         final Map<String, Object> merged = merger.merge(new String[]{MERGEYML_1, MERGEYML_2});

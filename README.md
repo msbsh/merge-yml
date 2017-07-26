@@ -3,9 +3,6 @@ merge-yml
 
 Merge multiple YML files into a single file, and substitute for any environment variables found
 
-(c) Copyright 2013 Jonathan Cobb.
-This code is available under the Apache License, version 2: http://www.apache.org/licenses/LICENSE-2.0.html
-
 ## Build
 
     mvn -P uberjar package

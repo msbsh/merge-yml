@@ -1,24 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<!--
-(c) Copyright 2013-2014 Jonathan Cobb
-This code is available under the Apache License, version 2: http://www.apache.org/licenses/LICENSE-2.0.html
--->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <artifactId>merge-yml</artifactId>
-    <groupId>org.cobbzilla</groupId>
-    <name>merge-yml</name>
-    <version>1.0.1-SNAPSHOT</version>
-    <packaging>jar</packaging>
 
-    <licenses>
-        <license>
-            <name>The Apache Software License, Version 2.0</name>
-            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
-            <distribution>repo</distribution>
-        </license>
-    </licenses>
+    <name>merge-yml</name>
+
+    <groupId>de.wizzn</groupId>
+    <artifactId>merge-yml</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+    <packaging>jar</packaging>
 
     <dependencies>
 
@@ -34,6 +25,11 @@ This code is available under the Apache License, version 2: http://www.apache.or
             <version>1.7.10</version>
             <scope>runtime</scope>
         </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-simple</artifactId>
+            <version>1.7.25</version>
+        </dependency>
 
         <!-- YAML config parsing -->
         <dependency>
@@ -41,7 +37,7 @@ This code is available under the Apache License, version 2: http://www.apache.or
             <artifactId>snakeyaml</artifactId>
             <version>1.15</version>
         </dependency>
-        
+
         <!-- testing -->
         <dependency>
             <groupId>junit</groupId>
@@ -93,13 +89,13 @@ This code is available under the Apache License, version 2: http://www.apache.or
                                 </goals>
                                 <configuration>
                                     <transformers>
-                                        <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-                                            <mainClass>org.cobbzilla.util.yml.main.MergeYml</mainClass>
+                                        <transformer
+                                            implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                                            <mainClass>org.cobbzilla.util.yml.YmlMerger</mainClass>
                                         </transformer>
                                     </transformers>
-                                    <!-- Exclude signed jars to avoid errors
-                                    see: http://stackoverflow.com/a/6743609/1251543
-                                    -->
+                                    <!-- Exclude signed jars to avoid errors 
+                                        see: http://stackoverflow.com/a/6743609/1251543 -->
                                     <filters>
                                         <filter>
                                             <artifact>*:*</artifact>

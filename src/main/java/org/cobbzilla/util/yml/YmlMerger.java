@@ -13,31 +13,35 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-/**
- * (c) Copyright 2013-2015 Jonathan Cobb
- * This code is available under the Apache License, version 2: http://www.apache.org/licenses/LICENSE-2.0.html
- */
 public class YmlMerger {
 
     private static final Logger LOG = LoggerFactory.getLogger(YmlMerger.class);
     public static final DefaultMustacheFactory DEFAULT_MUSTACHE_FACTORY = new DefaultMustacheFactory();
 
     private final Yaml yaml = new Yaml();
-    private final Map<String, Object> scope = new HashMap<String, Object>();;
+    private final Map<String, Object> scope = new HashMap<>();;
 
-    public YmlMerger() { init(System.getenv()); }
+    public YmlMerger() {
+        init(System.getenv());
+    }
 
-    public YmlMerger(Map<String, String> env) { if (env != null) init(env); }
+    public YmlMerger(Map<String, String> env) {
+        if (env != null) init(env);
+    }
 
     private void init(Map<String, String> env) {
         for (String varname : env.keySet()) {
             scope.put(varname, env.get(varname));
         }
     }
+    
+    public static void main (String[] args) throws Exception {
+        System.out.println(new YmlMerger().mergeToString(args));
+    }
 
     @SuppressWarnings("unchecked")
 	public Map<String, Object> merge(String[] files) throws IOException {
-        Map<String, Object> mergedResult = new LinkedHashMap<String, Object>();
+        Map<String, Object> mergedResult = new LinkedHashMap<>();
         for (String file : files) {
             InputStream in = null;
             try {
