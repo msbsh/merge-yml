@@ -13,7 +13,7 @@ Install maven on OS X using [homebrew](http://brew.sh/): `brew install maven`
 
 ## Usage
 
-    ./bin/merge-yml.sh file1.yml file2.yml ... > merged-result.yml
+    ./bin/merge-yml.sh filterName file1.yml file2.yml ... > merged-result.yml
 
 Files are merged in order, such that files listed later will override files listed earlier.
 

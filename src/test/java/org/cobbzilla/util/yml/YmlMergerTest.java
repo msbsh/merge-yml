@@ -1,16 +1,17 @@
 package org.cobbzilla.util.yml;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
+
+import java.io.File;
+import java.util.List;
+import java.util.Map;
+
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.yaml.snakeyaml.Yaml;
-
-import java.io.File;
-import java.util.Collections;
-import java.util.List;
-import java.util.Map;
-
-import static org.junit.Assert.*;
 
 public class YmlMergerTest {
 
@@ -25,7 +26,7 @@ public class YmlMergerTest {
     
     
     private final Yaml yaml = new Yaml();
-    private final YmlMerger merger = new YmlMerger();
+    private final YmlMerger merger = new YmlMerger("");
 
     @SuppressWarnings({ "unchecked" })
 	@Test
@@ -62,16 +63,6 @@ public class YmlMergerTest {
         assertNull(merged.get("prop2"));
     }
 
-    @SuppressWarnings({ "unchecked" })
-	@Test
-    public void testSubstitutionValueWithColon () throws Exception {
-        final Map<String, Object> merged = new YmlMerger(Collections.singletonMap("ENV_VAR", "localhost")).merge(new String[]{YML_COLON});
-        final Map<String, Object> hash = (Map<String, Object>) merged.get("memcache");
-        assertEquals(hash.get("one_key"), "value1");
-        assertEquals(hash.get("another_key"), "localhost:22133");
-        assertEquals(hash.get("some_other_key"), "value2");
-    }
-    
     @SuppressWarnings({ "unchecked"})
 	@Test
     public void testMerge2Lists () throws Exception {
